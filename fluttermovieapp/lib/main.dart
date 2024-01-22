@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'dart:html';
@@ -11,15 +13,14 @@ import 'package:fluttermovieapp/domain/usecases/get_popular.dart';
 import 'package:fluttermovieapp/domain/usecases/get_trending.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttermovieapp/data/data_sources/movie_remote_data_source.dart';
+import 'package:fluttermovieapp/di/get_it.dart' as getIt;
 
 Future<void> main() async {
-   ApiClient apiClient = ApiClient(http.Client());
-  MovieRemoteDataSource dataSource = MovieRemoteDataSourceImpl(apiClient);
 
-  MovieRepository movieRepository = MovieRepositoryImpl(dataSource);
+  unawaited(getIt.init()); // sử dụng DI
 
-  GetTrending getTrending = GetTrending(movieRepository);
-  GetPopular getPopular = GetPopular(movieRepository);
+  GetTrending getTrending = getIt.getItInstant<GetTrending>();
+  GetPopular getPopular = getIt.getItInstant<GetPopular>();
 
   final Either<AppError,List<MovieEntity>> eitherResponse = await getTrending(NoParams());
   eitherResponse.fold(
