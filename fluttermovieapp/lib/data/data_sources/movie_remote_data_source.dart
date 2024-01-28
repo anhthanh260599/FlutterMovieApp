@@ -1,10 +1,6 @@
-import 'dart:convert';
-import 'dart:html';
 import 'package:fluttermovieapp/data/core/api_clients.dart';
-import 'package:fluttermovieapp/data/core/api_constants.dart';
 import 'package:fluttermovieapp/data/models/movie_model.dart';
 import 'package:fluttermovieapp/data/models/movies_result_model.dart';
-import 'package:http/http.dart';
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getTrending(); // gọi API, danh sách phim trending theo ngày
