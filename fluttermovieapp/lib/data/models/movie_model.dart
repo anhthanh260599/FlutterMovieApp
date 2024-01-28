@@ -2,36 +2,36 @@ import 'package:fluttermovieapp/domain/entities/movie_entity.dart';
 
 class MovieModel extends MovieEntity{
   final bool? adult;
-  final String? backdropPath;
-  final int? id;
-  final String? title;
+  final String backdropPath;
+  final int id;
+  final String title;
   final String? originalLanguage;
   final String? originalTitle;
   final String? overview;
-  final String? posterPath;
+  final String posterPath;
   final String? mediaType;
   final List<int>? genreIds;
   final double? popularity;
-  final String? releaseDate;
+  final String releaseDate;
   final bool? video;
-  final double? voteAverage;
+  final double voteAverage;
   final int? voteCount;
 
   MovieModel(
       {this.adult,
-      this.backdropPath,
-      this.id,
-      this.title,
+      required this.backdropPath,
+      required this.id,
+      required this.title,
       this.originalLanguage,
       this.originalTitle,
       this.overview,
-      this.posterPath,
+      required this.posterPath,
       this.mediaType,
       this.genreIds,
       this.popularity,
-      this.releaseDate,
+      required this.releaseDate,
       this.video,
-      this.voteAverage,
+      required this.voteAverage,
       this.voteCount}) : super
       (
         id: id,
