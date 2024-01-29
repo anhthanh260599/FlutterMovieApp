@@ -10,6 +10,7 @@ import 'package:fluttermovieapp/domain/usecases/get_popular.dart';
 import 'package:fluttermovieapp/domain/usecases/get_trending.dart';
 import 'package:fluttermovieapp/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:fluttermovieapp/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
+import 'package:fluttermovieapp/presentation/blocs/movie_tabbed/movie_tabbed_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 
@@ -31,13 +32,21 @@ Future init() async {
   getItInstant.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl(getItInstant()));
 
 
-  // movie backdrop
+  // ảnh bìa phim (backdrop) 
   getItInstant.registerFactory(() => MovieBackdropBloc());
 
   getItInstant.registerFactory(
     () => MovieCarouselBloc(
       getTrending: getItInstant(),
       movieBackdropBloc: getItInstant()
-      )); 
+    )); 
+
+
+  // tab các phim
+  getItInstant.registerFactory(() => MovieTabbedBloc(
+    getPopular: GetPopular(getItInstant()), 
+    getPlayingNow: GetPlayingNow(getItInstant()), 
+    getComingSoon: GetComingSoon(getItInstant())
+  ));
 
 }

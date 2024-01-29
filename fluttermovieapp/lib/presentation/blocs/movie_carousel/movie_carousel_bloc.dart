@@ -18,7 +18,7 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
   }) : super(MovieCarouselInitial()) {
     on<MovieCarouselEvent>((event, emit) async {
       if (event is CarouselLoadEvent) {
-        final movieEither = await getTrending(NoParams());
+        final movieEither = await getTrending(NoParams()); // slider danh sách phim trending
 
         movieEither.fold(
           (l) {
