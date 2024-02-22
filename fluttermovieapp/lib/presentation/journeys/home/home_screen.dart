@@ -8,6 +8,7 @@ import 'package:fluttermovieapp/presentation/blocs/movie_carousel/movie_carousel
 import 'package:fluttermovieapp/presentation/blocs/movie_tabbed/movie_tabbed_bloc.dart';
 import 'package:fluttermovieapp/presentation/journeys/home/movie_carousel/movie_carousel_widget.dart';
 import 'package:fluttermovieapp/presentation/journeys/home/movie_tabbed/movie_tabbed_widget.dart';
+import 'package:fluttermovieapp/presentation/journeys/drawer/navigation_drawer.dart' as naviagation_drawer;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -45,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
         BlocProvider(create: (context) => movieTabbedBloc)
        ],
       child: Scaffold(
+        drawer: const naviagation_drawer.NavigationDrawer(), // Thanh menu Navigation
       body: BlocBuilder<MovieCarouselBloc,MovieCarouselState>(
         bloc: movieCarouselBloc,
         builder: (context,state) {
