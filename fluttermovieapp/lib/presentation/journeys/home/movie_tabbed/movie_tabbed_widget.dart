@@ -7,7 +7,6 @@ import 'package:fluttermovieapp/presentation/journeys/home/movie_tabbed/movie_li
 import 'package:fluttermovieapp/presentation/journeys/home/movie_tabbed/movie_tabbed_constants.dart';
 import 'package:fluttermovieapp/presentation/journeys/home/movie_tabbed/tab_tittle_widget.dart';
 
-
 class MovieTabbedWidget extends StatefulWidget { 
 
   @override
@@ -71,7 +70,4 @@ class _MovieTabbedWidgetState extends State<MovieTabbedWidget> with SingleTicker
   void _onTapTapped(int index) {
       movieTabbedBloc.add(MovieTabChangeEvent(currentTabIndex: index));
   }
-
 }
-
-

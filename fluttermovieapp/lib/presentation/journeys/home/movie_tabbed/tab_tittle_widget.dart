@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermovieapp/common/constants/size_constants.dart';
 import 'package:fluttermovieapp/common/extensions/size_extension.dart';
+import 'package:fluttermovieapp/common/extensions/string_extension.dart';
+import 'package:fluttermovieapp/presentation/app_localization.dart';
 import 'package:fluttermovieapp/presentation/themes/theme-text.dart';
 import 'package:fluttermovieapp/presentation/themes/theme_color.dart';
 
@@ -34,14 +36,11 @@ class TabTitleWidget extends StatelessWidget {
           )
       ),
       child:  Text(
-      title,
+      title.t(context), // popular . now . soon
       style: isSelected ? Theme.of(context).textTheme.royalBluetitleMedium : Theme.of(context).textTheme.titleMedium,
     ) ,
     ) ,
     );
-    
-    
-  
   }
 
 }

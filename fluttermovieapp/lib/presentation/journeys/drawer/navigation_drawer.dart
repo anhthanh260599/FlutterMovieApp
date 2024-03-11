@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttermovieapp/common/constants/languages.dart';
 import 'package:fluttermovieapp/common/constants/size_constants.dart';
+import 'package:fluttermovieapp/common/constants/translation_constants.dart';
 import 'package:fluttermovieapp/common/extensions/size_extension.dart';
+import 'package:fluttermovieapp/common/extensions/string_extension.dart';
+import 'package:fluttermovieapp/presentation/app_localization.dart';
+import 'package:fluttermovieapp/presentation/blocs/language/language_bloc.dart';
 import 'package:fluttermovieapp/presentation/journeys/drawer/navigation_expand_list_item.dart';
 import 'package:fluttermovieapp/presentation/journeys/drawer/navigation_list_item.dart';
+import 'package:fluttermovieapp/presentation/movie_app.dart';
 import 'package:fluttermovieapp/presentation/widgets/logo.dart';
+import 'package:device_info/device_info.dart';
+import 'package:flutter/services.dart';
 
 class NavigationDrawer extends StatelessWidget {
 
@@ -37,28 +46,32 @@ class NavigationDrawer extends StatelessWidget {
                   ),
               ),
               NavigationListItem(
-                title: "Favorite Movies", 
+                title: TranslationConstants.favoriteMovies.t(context), 
                 onPressed: () {}
               ),
               NavigationExpandedListItem(
-                title: "Language", 
-                onPressed: () {},
-                children: ["English","Vietnamese"]
+                title: TranslationConstants.language.t(context), 
+                children: Languages.languages.map((e) => e.value).toList(), // danh sách ngôn ngữ
+                onPressed: (index) {
+                    BlocProvider.of<LanguageBloc>(context).add(
+                      ToggleLanguageEvent(
+                        Languages.languages[index]
+                      ),
+                    );
+                }
               ),
                 NavigationListItem(
-                title: "Feedback", 
+                title: TranslationConstants.feedback.t(context), 
                 onPressed: () {}
               ),
                 NavigationListItem(
-                title: "About", 
+                title: TranslationConstants.about.t(context), 
                 onPressed: () {}
               )
               
             ],
           ),
         ),
-        
       );
   }
-
 }

@@ -3,7 +3,7 @@ import 'package:fluttermovieapp/presentation/journeys/drawer/navigation_list_ite
 
 class NavigationExpandedListItem extends StatelessWidget {
   final String title;
-  final Function() onPressed;
+  final Function(int) onPressed;
   final List<String> children;
 
   const NavigationExpandedListItem({
@@ -15,9 +15,7 @@ class NavigationExpandedListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
+    return Container(
          decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -35,12 +33,10 @@ class NavigationExpandedListItem extends StatelessWidget {
             for(int i = 0; i < children.length; i++)
             NavigationSubListItem(
               title: children[i], 
-              onPressed: (){}
+              onPressed: () => onPressed(i)
               )
           ],
         ),
-      ),
     );
   }
-  
 }
